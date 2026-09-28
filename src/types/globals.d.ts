@@ -1,5 +1,7 @@
 export {};
 declare global {
   // Next.js types
-  interface Window {}
+  interface Window {
+    adsbygoogle?: unknown[];
+  }
 }

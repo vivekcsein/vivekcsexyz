@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
+import Script from "next/script";
 import AppClientLayout from "@/components/layouts/AppClientLayout";
+import { adScriptSrc } from "@/packages/configs/ads.config";
 import appConfig from "@/packages/configs/app.config";
 import seo from "@/packages/seo";
 import { getThemeFontClassName } from "@/packages/utils/fonts";
@@ -21,6 +23,14 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <AppClientLayout>{children}</AppClientLayout>
       </body>
+      {adScriptSrc && (
+        <Script
+          async
+          crossOrigin="anonymous"
+          src={adScriptSrc}
+          strategy="afterInteractive"
+        />
+      )}
     </html>
   );
 }

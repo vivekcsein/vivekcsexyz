@@ -37,5 +37,21 @@ export const imagesConfig = {
         isActive: false,
       },
     ],
+    contentImages: [
+      {
+        id: "content-hero-image-01",
+        src: "/images/hero/hero-1.jpg",
+        alt: "Cool content image",
+        priority: true,
+        isActive: false,
+      },
+      {
+        id: "content-hero-image-02",
+        src: "/images/hero/hero-2.jpg",
+        alt: "Cool content image",
+        priority: false,
+        isActive: false,
+      },
+    ],
   },
 };

@@ -143,9 +143,7 @@ export const Select = ({
                 className={cn(
                   "flex h-8 w-full items-center gap-2 rounded-lg px-2.5 text-left text-[13px] transition-colors",
                   index === active && "bg-muted",
-                  isSelected
-                    ? "font-medium text-primary-soft"
-                    : "text-foreground",
+                  isSelected ? "font-medium text-primary" : "text-foreground",
                 )}
                 data-index={index}
                 id={`${listboxId}-${index}`}

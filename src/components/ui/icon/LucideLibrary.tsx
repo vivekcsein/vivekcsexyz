@@ -41,6 +41,7 @@ import {
   Layers,
   LayoutGrid,
   Link2,
+  ListCheck,
   Lock,
   LogIn,
   Mail,
@@ -75,6 +76,7 @@ import {
   UserPlus,
   Watch,
   X,
+  Zap,
 } from "lucide-react";
 
 export const lucideIcons = {
@@ -175,6 +177,8 @@ export const lucideIcons = {
   "heart-pulse": HeartPulse,
   diamond: Diamond,
   "flask-conical": FlaskConical,
+  "list-checks": ListCheck,
+  zap: Zap,
 } satisfies Record<string, LucideIcon>;
 
 export type LucideIconName = keyof typeof lucideIcons;

@@ -65,3 +65,6 @@ export const getInitials = (fullName: string, maxInitials = 2): string =>
     .slice(0, maxInitials)
     .map((word) => word.charAt(0).toUpperCase())
     .join("");
+
+export const formatReadingTime = (minutes: number): string =>
+  `${minutes} min read`;

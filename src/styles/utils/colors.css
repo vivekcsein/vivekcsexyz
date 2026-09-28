@@ -1,0 +1,62 @@
+/* ============================================================
+   theme-extras.css
+   Variables/references that exist in file 1 but not in file 2.
+   Values are copied 1:1 from file 1.
+   Import AFTER file 2's theme.css.
+   ============================================================ */
+
+/* ---------- VARIABLES ---------- */
+
+:root {
+  --primary: oklch(0.5 0.2 285);
+  --code-bg: oklch(0.975 0.004 268);
+  --header-h: 3.5rem;
+
+  /* Optional: file 1 uses -0.02em. File 2 uses 0em.
+     Uncomment to match file 1 (changes file 2's global tracking). */
+  /* --tracking-normal: -0.02em; */
+}
+
+.dark {
+  --primary: oklch(0.709 0.159 294);
+  --code-bg: oklch(0.17 0.045 283);
+}
+
+/* ---------- REFERENCES ---------- */
+
+@theme inline {
+  --color-primary: var(--primary);
+  --color-code: var(--code-bg);
+
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
+  --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+  --tracking-normal: var(--tracking-normal);
+  --tracking-wide: calc(var(--tracking-normal) + 0.025em);
+  --tracking-wider: calc(var(--tracking-normal) + 0.05em);
+  --tracking-widest: calc(var(--tracking-normal) + 0.1em);
+}
+
+/* Optional: file 1 applies tracking globally on body. */
+/*
+@layer base {
+  body {
+    letter-spacing: var(--tracking-normal);
+  }
+}
+*/
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 90rem;
+  padding-inline: 1rem;
+
+  @media (min-width: 40rem) {
+    padding-inline: 1.5rem;
+  }
+
+  @media (min-width: 64rem) {
+    padding-inline: 2rem;
+  }
+}

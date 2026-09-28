@@ -63,6 +63,12 @@ const parsedEnvSchema = z.object({
 
   NEXT_PUBLIC_AUTHOR_EMAIL: z.email().default("ivivekcse@gmail.com"),
 
+  NEXT_PUBLIC_AUTHOR_QUOTE: z
+    .string()
+    .trim()
+    .min(1)
+    .default("Discipline turns ideas into results."),
+
   // Google Verification
   NEXT_PUBLIC_GOOGLE_VERIFICATION: z
     .string()
@@ -100,6 +106,7 @@ export const envPublicConfig = Object.freeze({
   AUTHOR_NAME: parsedEnv.NEXT_PUBLIC_AUTHOR_NAME,
   AUTHOR_HANDLE: parsedEnv.NEXT_PUBLIC_AUTHOR_HANDLE,
   AUTHOR_EMAIL: parsedEnv.NEXT_PUBLIC_AUTHOR_EMAIL,
+  AUTHOR_QUOTE: parsedEnv.NEXT_PUBLIC_AUTHOR_QUOTE,
 
   // Google Verification
   GOOGLE_VERIFICATION: parsedEnv.NEXT_PUBLIC_GOOGLE_VERIFICATION,

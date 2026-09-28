@@ -1,5 +1,5 @@
-"use client";
-
+import { getSearchIndex } from "@/packages/utils/loader";
+import { SearchProvider } from "../features/search/SearchProvider";
 import NavigationProvider from "../providers/NavigationProvider";
 import { StyleProvider } from "../providers/StyleProvider";
 import ThemeProvider from "../providers/ThemeProvider";
@@ -15,10 +15,12 @@ const AppClientLayout = ({ children }: AppClientLayoutProps) => {
     <ThemeProvider>
       <StyleProvider>
         <NavigationProvider>
-          <Header />
-          <BackgroundGridEffect />
-          <main className="main screen-height">{children}</main>
-          <Footer />
+          <SearchProvider index={getSearchIndex()}>
+            <Header />
+            <BackgroundGridEffect />
+            <main className="main screen-height">{children}</main>
+            <Footer />
+          </SearchProvider>
         </NavigationProvider>
       </StyleProvider>
     </ThemeProvider>
