@@ -24,7 +24,7 @@ const appConfig = {
     ogImage: envPublicConfig.OG_IMAGE_URL,
     theme: envPublicConfig.ACTIVE_THEME,
     style: envPublicConfig.ACTIVE_STYLE,
-    titleTemplate: "%s | Next Template",
+    titleTemplate: "%s | VivekCSE Portfolio",
   },
 
   // Author
@@ -117,23 +117,33 @@ const appConfig = {
     // Primary Pages
     home: "/",
     about: "/about",
+    projects: "/projects",
+    marketplace: "/marketplace",
     notFound: "/404",
 
-    // SEO
-    seo: {
-      robots: "/robots.txt",
-      sitemap: "/sitemap.xml",
+    // Content
+    articles: {
+      base: "/content",
+      resources: "resources",
+      docs: "/docs",
+      tutorials: "/tutorials",
+      journey: "/journey",
+      techStack: "/tech-stack",
     },
 
     // Services
     services: {
-      webDevelopment: "/web-development",
-      backend: "/backend-development",
-      performanceSeo: "/performance-seo",
-      authenticationSecurity: "/authentication-security",
+      webDevelopment: "/services/web-development",
+      performance: "/services/performance-optimization",
+      backend: "/services/backend-development",
+      authenticationSecurity: "/services/authentication-security",
+      seoAdsMonetization: "/services/seo-ads-monetization",
+      augmentedReality: "/services/ar-experiences",
+      animation: "/services/animation",
+      figmaToCode: "/services/figma-to-code",
     },
 
-    // Legal Company
+    // Legal / Company
     legal: {
       contact: "/contact",
       privacy: "/privacy",

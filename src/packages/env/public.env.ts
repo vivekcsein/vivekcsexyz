@@ -5,7 +5,7 @@ import { parseEnv } from "../utils/parse-env";
 // Public Environment Schema
 const parsedEnvSchema = z.object({
   // App
-  NEXT_PUBLIC_APP_NAME: z.string().trim().min(1).default("@frenzzofficial"),
+  NEXT_PUBLIC_APP_NAME: z.string().trim().min(1).default("@vivekcsein"),
 
   NEXT_PUBLIC_APP_VERSION: z.string().trim().min(1).default("2.0.0"),
 
@@ -14,7 +14,7 @@ const parsedEnvSchema = z.object({
     .trim()
     .min(1)
     .default(
-      "Future-ready 2026 frontend template for creating robust, enterprise-level web applications.",
+      "A portfolio full stack developer with a passion for building scalable and high-performance web applications.",
     ),
 
   // Site
@@ -24,7 +24,7 @@ const parsedEnvSchema = z.object({
     .string()
     .trim()
     .min(1)
-    .default("Top 1% Frontend Template of 2026"),
+    .default("Top 1% Full stack developer with AI"),
 
   NEXT_PUBLIC_LOGO_URL: z.string().trim().min(1).default("/logo.png"),
 
@@ -44,24 +44,24 @@ const parsedEnvSchema = z.object({
   NEXT_PUBLIC_TWITTER: z
     .string()
     .trim()
-    .default("https://twitter.com/frenzzofficial"),
+    .default("https://twitter.com/vivekcsein"),
 
   NEXT_PUBLIC_GITHUB: z
     .string()
     .trim()
-    .default("https://github.com/frenzzofficial"),
+    .default("https://github.com/vivekcsein"),
 
   NEXT_PUBLIC_LINKEDIN: z
     .string()
     .trim()
-    .default("https://www.linkedin.com/company/frenzz/"),
+    .default("https://www.linkedin.com/showcase/vivekcsein"),
 
   // Author
-  NEXT_PUBLIC_AUTHOR_NAME: z.string().trim().min(1).default("frenzzofficial"),
+  NEXT_PUBLIC_AUTHOR_NAME: z.string().trim().min(1).default("Vivek"),
 
-  NEXT_PUBLIC_AUTHOR_HANDLE: z.string().trim().min(1).default("frenzzofficial"),
+  NEXT_PUBLIC_AUTHOR_HANDLE: z.string().trim().min(1).default("vivekcsein"),
 
-  NEXT_PUBLIC_AUTHOR_EMAIL: z.email().default("contact@frenzz.in"),
+  NEXT_PUBLIC_AUTHOR_EMAIL: z.email().default("ivivekcse@gmail.com"),
 
   // Google Verification
   NEXT_PUBLIC_GOOGLE_VERIFICATION: z

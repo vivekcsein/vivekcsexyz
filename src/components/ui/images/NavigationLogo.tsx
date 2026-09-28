@@ -23,7 +23,7 @@ type NavigationLogoProps = {
  */
 const NavigationLogo = ({
   src,
-  width = 128,
+  width = 150,
   height = 40,
   className,
   style,

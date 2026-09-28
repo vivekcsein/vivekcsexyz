@@ -541,7 +541,6 @@ export const hashtagRules = trimString()
   .regex(/^#?[A-Za-z0-9_]{1,50}$/, schemaMessages.hashtagInvalid)
   .describe("Hashtag");
 
-// SOCIAL HANDLE rules, e.g. "@frenzzgg" or "frenzzgg"
 export const socialHandleRules = trimString()
   .regex(/^@?[A-Za-z0-9_]{1,30}$/, schemaMessages.socialHandleInvalid)
   .describe("Social media handle");

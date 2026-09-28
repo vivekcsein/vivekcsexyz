@@ -15,42 +15,51 @@ export const mainNav: NavTab[] = [
     title: "Services",
     dropdown: [
       {
-        category: "services",
+        category: "Development",
         items: [
           {
             label: "Web Development",
             href: appConfig.routes.services.webDevelopment,
           },
           {
-            label: "Backend Development",
-            href: appConfig.routes.services.backend,
+            label: "Performance & Optimization",
+            href: appConfig.routes.services.performance,
           },
-          {
-            label: "Performance & SEO",
-            href: appConfig.routes.services.performanceSeo,
-          },
+          { label: "Backend & APIs", href: appConfig.routes.services.backend },
           {
             label: "Authentication & Security",
             href: appConfig.routes.services.authenticationSecurity,
           },
         ],
       },
-    ],
-  },
-  {
-    id: "legal",
-    title: "Legal",
-    dropdown: [
       {
-        category: "Company",
+        category: "Specialized",
         items: [
-          { label: "Contact", href: appConfig.routes.legal.contact },
-          { label: "Privacy", href: appConfig.routes.legal.privacy },
-          { label: "Terms", href: appConfig.routes.legal.terms },
+          {
+            label: "SEO & Ad Monetization",
+            href: appConfig.routes.services.seoAdsMonetization,
+          },
+          {
+            label: "AR Experiences",
+            href: appConfig.routes.services.augmentedReality,
+          },
+          { label: "Animation", href: appConfig.routes.services.animation },
+          {
+            label: "Figma to Code",
+            href: appConfig.routes.services.figmaToCode,
+          },
         ],
       },
     ],
   },
+  { id: "articles", title: "Articles", href: appConfig.routes.articles.base },
+  { id: "projects", title: "Projects", href: appConfig.routes.projects },
+  {
+    id: "marketplace",
+    title: "Marketplace",
+    href: appConfig.routes.marketplace,
+  },
+  { id: "contact", title: "Contact", href: appConfig.routes.legal.contact },
 ];
 export const footerNav: NavSection[] = [
   {
@@ -70,7 +79,7 @@ export const footerNav: NavSection[] = [
       { label: "Backend & APIs", href: appConfig.routes.services.backend },
       {
         label: "Performance Optimization",
-        href: appConfig.routes.services.performanceSeo,
+        href: appConfig.routes.services.performance,
       },
       {
         label: "Security & Authentication",
