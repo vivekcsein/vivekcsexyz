@@ -1,7 +1,7 @@
 ---
-description:
+description: "The mandatory folder layout for backend (Hono and Bun) and frontend projects, with no deviations allowed without a documented reason in the README."
 date: 2026-09-12
-keywords: []
+keywords: [folder structure, project structure, backend, frontend, conventions, hono]
 featured: false
 ---
 

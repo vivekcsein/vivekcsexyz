@@ -1,7 +1,7 @@
 ---
-description:
+description: "A library of production-ready Blender prompts for the 3D assets on Vivek's portfolio, from the workspace and avatar to tech orbs, with shared rules for web-ready GLB export."
 date: 2026-09-12
-keywords: []
+keywords: [blender, 3d, glb, portfolio, ai prompts, web performance]
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
-description:
+description: "A plain-English explanation of static websites for business owners: how hosting, live data from outside services and user login work, and what the approach cannot do."
 date: 2026-09-12
-keywords: []
+keywords: [static site, static export, hosting, authentication, web basics]
 featured: false
 ---
 

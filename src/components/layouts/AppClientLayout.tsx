@@ -18,7 +18,9 @@ const AppClientLayout = ({ children }: AppClientLayoutProps) => {
           <SearchProvider index={getSearchIndex()}>
             <Header />
             <BackgroundGridEffect />
-            <main className="main screen-height">{children}</main>
+            <main className="main screen-height" id="main">
+              {children}
+            </main>
             <Footer />
           </SearchProvider>
         </NavigationProvider>

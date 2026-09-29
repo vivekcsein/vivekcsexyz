@@ -18,6 +18,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       data-scroll-behavior="smooth"
+      data-theme={appConfig.site.style}
       className={`${getThemeFontClassName(appConfig.site.style)} h-full antialiased`}
     >
       <body suppressHydrationWarning={true}>

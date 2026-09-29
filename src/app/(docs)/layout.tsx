@@ -17,9 +17,7 @@ const DocsGroupLayout = ({ children }: DocsGroupLayoutProps) => (
       <aside className="app-sidebar sticky top-(--header-h) hidden h-[calc(100svh-var(--header-h))] shrink-0 border-r border-sidebar-border bg-sidebar lg:block">
         <KnowledgeSidebar data={getSidebarData()} />
       </aside>
-      <main className="min-w-0 flex-1" id="main">
-        {children}
-      </main>
+      <div className="min-w-0 flex-1">{children}</div>
     </div>
     <MobileSidebar data={getSidebarData()} />
   </>

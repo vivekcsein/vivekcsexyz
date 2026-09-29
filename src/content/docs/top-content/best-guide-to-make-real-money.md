@@ -1,8 +1,8 @@
 ---
-description:
+description: "A working topic bank for docs on jobs, freelancing and marketing, each picked for real search demand and a clear way to help readers earn."
 date: 2026-09-12
-keywords: []
-featured: true
+keywords: [freelancing, jobs, marketing, content planning, income]
+featured: false
 ---
 
 # Documentation Topic List — Jobs, Marketing & Freelance (All Roads Lead to "Make Real Money")

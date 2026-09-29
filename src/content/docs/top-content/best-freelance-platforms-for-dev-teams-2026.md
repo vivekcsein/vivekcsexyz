@@ -1,7 +1,7 @@
 ---
-description:
+description: "A 2026 guide to the best freelance platforms for dev teams and studios: open marketplaces, vetted networks, job boards and B2B directories, with fees and a practical stack."
 date: 2026-09-12
-keywords: []
+keywords: [freelancing, freelance platforms, clients, agency, marketplaces, 2026]
 featured: true
 ---
 

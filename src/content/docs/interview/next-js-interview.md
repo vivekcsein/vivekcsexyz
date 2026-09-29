@@ -1,7 +1,7 @@
 ---
-description:
+description: "100 Next.js interview questions from beginner to enterprise: App Router, rendering strategies, caching, performance, security and production debugging."
 date: 2026-09-12
-keywords: []
+keywords: [nextjs, interview, app router, rendering, caching, performance, security]
 featured: false
 ---
 

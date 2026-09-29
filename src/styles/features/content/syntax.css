@@ -28,30 +28,7 @@
   overflow-wrap: normal;
 }
 
-/* Light theme palette */
-:root {
-  --hl-comment: oklch(0.55 0.02 270);
-  --hl-keyword: oklch(0.5 0.22 305);
-  --hl-string: oklch(0.5 0.13 155);
-  --hl-number: oklch(0.55 0.17 50);
-  --hl-title: oklch(0.5 0.18 255);
-  --hl-attr: oklch(0.52 0.15 200);
-  --hl-meta: oklch(0.5 0.02 270);
-  --hl-addition: oklch(0.5 0.13 155);
-  --hl-deletion: oklch(0.55 0.2 25);
-}
-
-.dark {
-  --hl-comment: oklch(0.65 0.02 270);
-  --hl-keyword: oklch(0.78 0.15 310);
-  --hl-string: oklch(0.8 0.13 155);
-  --hl-number: oklch(0.8 0.13 65);
-  --hl-title: oklch(0.78 0.12 250);
-  --hl-attr: oklch(0.8 0.1 200);
-  --hl-meta: oklch(0.7 0.02 270);
-  --hl-addition: oklch(0.8 0.13 155);
-  --hl-deletion: oklch(0.75 0.15 25);
-}
+/* Token colours (--hl-*) are derived from the theme in colors.css. */
 
 .hljs-comment,
 .hljs-quote {

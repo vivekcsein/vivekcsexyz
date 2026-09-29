@@ -35,7 +35,7 @@
 
   background: radial-gradient(
     240px circle at var(--shine-x) var(--shine-y),
-    color-mix(in oklch, var(--primary) 90%, white 10%),
+    color-mix(in oklch, var(--primary) 90%, var(--paper) 10%),
     transparent 70%
   );
 

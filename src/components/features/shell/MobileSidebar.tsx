@@ -47,7 +47,12 @@ export const MobileSidebar = ({ data }: { data: SidebarData }) => {
             onClick={() => setOpen(false)}
             type="button"
           />
-          <div className="animate-fade-up absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col border-r border-sidebar-border bg-sidebar shadow-pop">
+          <div
+            aria-label="Knowledge menu"
+            aria-modal="true"
+            role="dialog"
+            className="animate-fade-up absolute inset-y-0 left-0 flex w-72 max-w-[85vw] flex-col border-r border-sidebar-border bg-sidebar shadow-pop"
+          >
             <div className="flex shrink-0 justify-end px-3 pt-3">
               <button
                 aria-label="Close menu"

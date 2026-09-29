@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { DocCard } from "@/components/features/docs/DocCard";
 import { useSearch } from "@/components/features/search/SearchProvider";
-import { Icon, Select } from "@/components/ui";
+import { Card, Icon, Select } from "@/components/ui";
 import { Pagination } from "@/components/ui/pagination/Pagination";
 import { shellConfig } from "@/packages/configs/shell.config";
 import { cn } from "@/packages/utils/cn";
@@ -300,11 +300,13 @@ export const ArticlesExplorer = ({
         <ul className="grid gap-3.5 sm:grid-cols-2 xl:grid-cols-3">
           {visible.map((item) => (
             <li key={item.id}>
-              <DocCard
-                categoryTitle={item.topicTitle}
-                color={item.color}
-                doc={item}
-              />
+              <Card variant="interactive-glow">
+                <DocCard
+                  categoryTitle={item.topicTitle}
+                  color={item.color}
+                  doc={item}
+                />
+              </Card>
             </li>
           ))}
         </ul>

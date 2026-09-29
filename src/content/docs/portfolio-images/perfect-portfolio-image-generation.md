@@ -1,7 +1,7 @@
 ---
-description:
+description: "A section-by-section AI design prompt for a premium, futuristic developer portfolio landing page: hero, about, tech stack, projects, 3D showcase, blog and footer."
 date: 2026-09-12
-keywords: []
+keywords: [portfolio, ui design, ai prompts, image generation, landing page]
 featured: false
 ---
 

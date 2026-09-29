@@ -1,7 +1,7 @@
 ---
-description:
+description: "Role-based access control and secure data handling in Next.js: four enforcement layers from middleware to client components, plus common pitfalls and a 2026 stack."
 date: 2026-09-12
-keywords: []
+keywords: [nextjs, rbac, authorization, security, middleware, server components, server actions]
 featured: false
 ---
 

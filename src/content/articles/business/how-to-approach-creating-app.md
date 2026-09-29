@@ -1,7 +1,7 @@
 ---
-description:
+description: "The end-to-end process for building a web app from scratch: discovery, design, theming, config files, project structure, UI and page assembly, with AI prompt templates."
 date: 2026-09-12
-keywords: []
+keywords: [web app, workflow, design system, project structure, ai prompts, nextjs]
 featured: false
 ---
 

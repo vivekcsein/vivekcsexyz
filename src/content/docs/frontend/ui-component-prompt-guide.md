@@ -1,7 +1,7 @@
 ---
-description:
+description: "Reusable AI prompts for generating production-grade UI components like Button, Link and Input, with a master template and rules for variants, sizes and code quality."
 date: 2026-09-12
-keywords: []
+keywords: [ui components, ai prompts, prompt engineering, react, nextjs, design system]
 featured: false
 ---
 

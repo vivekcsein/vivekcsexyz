@@ -1,7 +1,7 @@
 ---
-description:
+description: "100 JavaScript and React interview questions with plain-English answers, from ES6+ and async to hooks, performance, React 19, Next.js and TypeScript."
 date: 2026-09-12
-keywords: []
+keywords: [react, javascript, interview, hooks, react 19, nextjs, typescript]
 featured: false
 ---
 

@@ -1,7 +1,7 @@
 ---
-description:
+description: "Decision framework for choosing Supabase, Firebase or a custom Node.js/Express backend, with common bottlenecks, best practices, an intake checklist and SOW templates."
 date: 2026-09-12
-keywords: []
+keywords: [supabase, firebase, backend, nodejs, baas, client playbook]
 featured: false
 ---
 

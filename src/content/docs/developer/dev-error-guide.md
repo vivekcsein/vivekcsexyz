@@ -1,7 +1,7 @@
 ---
-description:
+description: "Why common JavaScript and React errors happen and how to fix them: undefined properties, non-functions, const reassignment, re-renders, hooks rules, try/catch and more."
 date: 2026-09-12
-keywords: []
+keywords: [javascript, react, debugging, errors, hooks, beginners]
 featured: false
 ---
 

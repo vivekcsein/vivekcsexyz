@@ -1,7 +1,7 @@
 ---
-description:
+description: "Client advisory playbook for adding AI to Next.js apps: choosing between direct API calls, the Vercel AI SDK, RAG and agents, with an intake checklist and SOW templates."
 date: 2026-09-12
-keywords: [nextjs, auth, cookies, tutorial]
+keywords: [nextjs, ai, llm, rag, vercel ai sdk, client playbook]
 featured: false
 ---
 

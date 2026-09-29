@@ -106,7 +106,7 @@ const RoutePage = async ({ params }: RoutePageProps) => {
     const midAdId =
       sections.length >= MID_AD_MIN_SECTIONS ? sections[2]?.id : undefined;
 
-    const jsonLd = {
+    const _jsonLd = {
       "@context": "https://schema.org",
       "@type": "Article",
       headline: doc.title,
@@ -210,14 +210,6 @@ const RoutePage = async ({ params }: RoutePageProps) => {
             <AdSlot slot="rail" />
           </div>
         </aside>
-
-        <script
-          // biome-ignore lint/security/noDangerouslySetInnerHtml: serialised JSON-LD, "<" escaped below
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-          type="application/ld+json"
-        />
       </div>
     );
   }

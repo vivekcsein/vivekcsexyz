@@ -2,11 +2,11 @@ import type { MarketplaceProduct } from "@/types/marketplace";
 
 /** Accent colors for category badges and card chrome. */
 export const marketplaceColors = {
-  violet: "#8548fe",
-  teal: "#14b8a6",
-  indigo: "#6366f1",
-  pink: "#ec4899",
-  blue: "#3b82f6",
+  violet: "var(--mkt-violet)",
+  teal: "var(--mkt-teal)",
+  indigo: "var(--mkt-indigo)",
+  pink: "var(--mkt-pink)",
+  blue: "var(--mkt-blue)",
 } as const;
 
 export type MarketplaceColor = keyof typeof marketplaceColors;

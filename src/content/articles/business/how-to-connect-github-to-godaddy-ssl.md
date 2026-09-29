@@ -1,7 +1,7 @@
 ---
-description:
+description: "Step-by-step guide to deploying a site on GitHub Pages, pointing a GoDaddy domain at it with DNS records, and enabling free HTTPS."
 date: 2026-09-12
-keywords: []
+keywords: [github pages, godaddy, dns, ssl, custom domain, hosting]
 featured: false
 ---
 

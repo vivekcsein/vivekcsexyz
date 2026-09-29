@@ -5,6 +5,7 @@ import {
   type ReactNode,
   useContext,
   useEffect,
+  useRef,
   useState,
 } from "react";
 import appConfig from "@/packages/configs/app.config";
@@ -31,23 +32,36 @@ const StyleContext = createContext<StyleContextValue | null>(null);
 const isValidTheme = (value: string | null): value is StyleThemeName =>
   value !== null && STYLE_THEMES.some((theme) => theme.name === value);
 
+// Storage can throw (private mode, blocked cookies) — never let it break the app.
+const readStored = (): string | null => {
+  try {
+    return window.localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return null;
+  }
+};
+
+const writeStored = (value: string) => {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, value);
+  } catch {
+    // ignore
+  }
+};
+
 export const StyleProvider = ({ children }: { children: ReactNode }) => {
   // Starts at the server-rendered THEME (matches layout.tsx's
   // data-theme attribute) so there's no hydration mismatch. Any stored
   // preference is applied after mount, client-side only.
   const THEME = appConfig.site.style as StyleThemeName;
-  const [currentTheme, setCurrentTheme] = useState<StyleThemeName>(() => {
-    if (typeof window === "undefined") {
-      return THEME;
-    }
-
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-
-    return isValidTheme(stored) ? stored : THEME;
-  });
+  // Always start at the server value so hydration matches; the saved choice
+  // is applied right after mount (the inline script in layout.tsx already set
+  // data-theme before first paint, so there is no visible flash).
+  const [currentTheme, setCurrentTheme] = useState<StyleThemeName>(THEME);
+  const isFirstRun = useRef(true);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
+    const stored = readStored();
 
     if (isValidTheme(stored)) {
       setCurrentTheme(stored);
@@ -55,8 +69,14 @@ export const StyleProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
+    // Skip the initial run: it would overwrite the pre-paint theme with THEME.
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+
     document.documentElement.setAttribute("data-theme", currentTheme);
-    window.localStorage.setItem(STORAGE_KEY, currentTheme);
+    writeStored(currentTheme);
   }, [currentTheme]);
 
   const setTheme = (theme: StyleThemeName) => setCurrentTheme(theme);

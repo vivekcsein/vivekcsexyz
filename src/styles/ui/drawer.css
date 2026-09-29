@@ -25,10 +25,8 @@
   padding: 0;
   cursor: pointer;
 
-  /* Deliberately a fixed black scrim, not a theme token — a backdrop
-     should read as "dimmed" the same way in light or dark mode, which
-     var(--foreground) (light-colored in dark mode) would get backwards. */
-  background: oklch(0 0 0 / 0.5);
+  /* Fixed dark scrim (--scrim in colors.css) — reads as "dimmed" in both modes. */
+  background: var(--scrim);
 
   opacity: 0;
   transition: opacity 250ms ease;

@@ -2,7 +2,7 @@
 description: The folder layout, config split, and conventions I reuse across every Next.js App Router project.
 date: 2026-09-15
 keywords: [nextjs, project structure, app router, conventions]
-featured: true
+featured: false
 ---
 
 # How I structure a Next.js project

@@ -1,7 +1,7 @@
 ---
-description:
+description: "Technical guide to hosting a static Next.js site for free: Supabase auth, a GitHub Pages custom domain and a GitHub Actions deployment workflow."
 date: 2026-09-12
-keywords: []
+keywords: [nextjs, supabase, github pages, github actions, static export, free hosting]
 featured: false
 ---
 

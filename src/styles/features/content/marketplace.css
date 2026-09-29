@@ -13,8 +13,8 @@
 /* ---------- Category badge / card tint ---------- */
 
 .mkt-badge {
-  background: color-mix(in oklab, var(--mkt-color) 88%, black 4%);
-  color: white;
+  background: color-mix(in oklab, var(--mkt-color) 88%, var(--ink) 4%);
+  color: var(--paper);
 }
 
 .mkt-card {
@@ -46,7 +46,7 @@
 .mkt-card:hover .mkt-card-arrow {
   background: var(--mkt-color);
   border-color: transparent;
-  color: white;
+  color: var(--paper);
   transform: translateX(2px);
 }
 
@@ -59,8 +59,8 @@
      site's light/dark theme, the way a real screenshot would be. */
   background: linear-gradient(
     165deg,
-    color-mix(in oklab, var(--mkt-color) 30%, #0c0d18) 0%,
-    #0c0d18 78%
+    color-mix(in oklab, var(--mkt-color) 30%, var(--mkt-screen-dark)) 0%,
+    var(--mkt-screen-dark) 78%
   );
 }
 
@@ -76,7 +76,11 @@
 }
 
 .mkt-browser--light {
-  background: linear-gradient(165deg, #f4f2ff 0%, #ffffff 78%);
+  background: linear-gradient(
+    165deg,
+    color-mix(in oklab, var(--mkt-color) 10%, var(--mkt-screen-light)) 0%,
+    var(--mkt-screen-light) 78%
+  );
 }
 .mkt-browser--light::before {
   background: radial-gradient(
@@ -97,7 +101,7 @@
     ),
     radial-gradient(
       35% 45% at 40% 70%,
-      color-mix(in oklab, #ec4899 22%, transparent),
+      color-mix(in oklab, var(--brand-to) 22%, transparent),
       transparent 70%
     );
   filter: blur(2px);

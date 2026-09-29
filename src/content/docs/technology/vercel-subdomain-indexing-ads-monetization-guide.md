@@ -1,7 +1,7 @@
 ---
-description:
+description: "How search indexing works on *.vercel.app subdomains and why they don't qualify for AdSense or Media.net, with an indexing checklist and a custom-domain roadmap."
 date: 2026-09-12
-keywords: []
+keywords: [vercel, seo, adsense, monetization, custom domain, indexing]
 featured: false
 ---
 

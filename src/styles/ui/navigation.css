@@ -12,7 +12,7 @@
 
 /* Also the offset the mobile drawer starts below (see mobile-menu-root). */
 :root {
-  --header-height: 4rem;
+  --header-height: var(--header-h, 4rem);
 }
 
 .header {

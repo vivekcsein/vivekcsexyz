@@ -1,7 +1,7 @@
 ---
-description:
+description: "100 logical JavaScript interview questions with runnable examples, outputs and explanations: tricky output, closures, async, arrays, algorithms and prototypes."
 date: 2026-09-12
-keywords: []
+keywords: [javascript, interview, closures, async, algorithms, prototypes]
 featured: false
 ---
 

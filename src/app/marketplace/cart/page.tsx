@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 const CartPage = () => (
   <>
-    <main className="mx-auto w-full max-w-6xl flex-1 px-6 py-10" id="main">
+    <div className="mx-auto w-full max-w-6xl flex-1 px-6 py-10">
       <Link
         className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
         href="/marketplace"
@@ -28,7 +28,7 @@ const CartPage = () => (
       <div className="mt-8">
         <CartView />
       </div>
-    </main>
+    </div>
   </>
 );
 

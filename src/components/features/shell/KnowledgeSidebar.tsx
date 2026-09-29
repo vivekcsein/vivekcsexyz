@@ -14,7 +14,7 @@ import type { SidebarData } from "@/types/content";
 import { SidebarToggle } from "./SidebarToggle";
 
 const rowBase =
-  "sb-row flex h-8 w-full items-center gap-3 rounded-lg px-3 text-[13px] font-medium transition-colors";
+  "sb-row flex min-h-9 w-full items-center gap-3 rounded-lg px-3 py-1.5 text-[13px] font-medium leading-snug transition-colors";
 const rowIdle = "text-muted-foreground hover:bg-muted/60 hover:text-foreground";
 const rowActive = "border border-primary/40 bg-primary/15 text-foreground";
 
@@ -39,12 +39,19 @@ const NavRow = ({
 }: NavRowProps) => {
   const content = (
     <>
-      <Icon name={icon} size={16} />
-      <span className={cn("flex-1 truncate text-left", hide)}>{label}</span>
+      <Icon className="shrink-0" name={icon} size={16} />
+      <span
+        className={cn(
+          "flex-1 text-left min-w-0 break-words [overflow-wrap:anywhere]",
+          hide,
+        )}
+      >
+        {label}
+      </span>
       {badge !== undefined && (
         <span
           className={cn(
-            "rounded-md px-2 py-0.5 text-[11px] tabular-nums",
+            "shrink-0 rounded-md px-2 py-0.5 text-[11px] tabular-nums",
             hide,
             active ? "bg-primary/30 text-foreground" : "text-muted-foreground",
           )}
@@ -120,10 +127,10 @@ export const KnowledgeSidebar = ({
             <Icon name="book-open" size={19} />
           </span>
           <div className="min-w-0 leading-tight">
-            <p className="truncate text-sm font-semibold">
+            <p className="min-w-0 break-words [overflow-wrap:anywhere] text-sm font-semibold">
               {shellConfig.sidebar.title}
             </p>
-            <p className="mt-0.5 truncate text-[11px] text-muted-foreground">
+            <p className="mt-0.5 min-w-0 break-words [overflow-wrap:anywhere] text-[11px] text-muted-foreground">
               {shellConfig.sidebar.subtitle}
             </p>
           </div>
@@ -131,7 +138,7 @@ export const KnowledgeSidebar = ({
         {compactable && <SidebarToggle />}
       </div>
 
-      <div className="sb-scroll min-h-0 flex-1 space-y-5 overflow-y-auto px-4 py-1">
+      <div className="sb-scroll min-h-0 flex-1 space-y-5 overflow-y-auto overflow-x-hidden px-4 py-1">
         <ul className="space-y-0.5">
           <li>
             <NavRow
@@ -203,7 +210,7 @@ export const KnowledgeSidebar = ({
                 className="text-muted-foreground hover:text-foreground"
                 href={shellConfig.aggregateHref}
               >
-                <Icon name="user-plus" size={15} />
+                <Icon name="arrow-right" size={15} />
               </Link>
             }
             hide={hide}
@@ -221,7 +228,7 @@ export const KnowledgeSidebar = ({
                   <Link
                     aria-current={pathname === topic.href ? "page" : undefined}
                     className={cn(
-                      "sb-row flex h-8 items-center gap-3 rounded-lg px-3 text-[13px] transition-colors",
+                      "sb-row flex min-h-9 items-center gap-3 rounded-lg px-3 py-1.5 text-[13px] leading-snug transition-colors",
                       isActive
                         ? "font-medium text-foreground"
                         : "text-muted-foreground hover:bg-muted/60 hover:text-foreground",
@@ -231,12 +238,17 @@ export const KnowledgeSidebar = ({
                     title={`${topic.title} (${topic.count})`}
                   >
                     <span className="topic-dot size-2 shrink-0 rounded-full" />
-                    <span className={cn("flex-1 truncate", hide)}>
+                    <span
+                      className={cn(
+                        "flex-1 min-w-0 break-words [overflow-wrap:anywhere]",
+                        hide,
+                      )}
+                    >
                       {topic.title}
                     </span>
                     <span
                       className={cn(
-                        "text-xs tabular-nums text-muted-foreground",
+                        "shrink-0 text-xs tabular-nums text-muted-foreground",
                         hide,
                       )}
                     >
@@ -247,10 +259,12 @@ export const KnowledgeSidebar = ({
                   {isActive && (
                     <ul
                       className={cn(
-                        "my-1 ml-[1.15rem] space-y-0.5 border-l pl-3",
+                        "my-1 ml-[1.15rem] min-w-0 space-y-0.5 border-l pl-3",
                         hide,
                       )}
-                      style={{ borderColor: `${topicPalette[topic.color]}55` }}
+                      style={{
+                        borderColor: `color-mix(in oklab, ${topicPalette[topic.color]} 33%, transparent)`,
+                      }}
                     >
                       {topic.docs.map((doc) => (
                         <li key={doc.id}>
@@ -259,7 +273,7 @@ export const KnowledgeSidebar = ({
                               pathname === doc.href ? "page" : undefined
                             }
                             className={cn(
-                              "block rounded-md px-2 py-1 text-xs leading-snug transition-colors",
+                              "block rounded-md px-2 py-1 text-xs leading-snug transition-colors min-w-0 break-words [overflow-wrap:anywhere]",
                               pathname === doc.href
                                 ? "bg-primary/15 font-medium text-foreground"
                                 : "text-muted-foreground hover:text-foreground",
@@ -302,7 +316,7 @@ export const KnowledgeSidebar = ({
       <div className="sb-footer shrink-0 px-4 pb-4 pt-3">
         <figure
           className={cn(
-            "rounded-xl border border-teal-400/25 bg-linear-to-br from-teal-400/10 to-primary/10 p-4",
+            "rounded-xl border border-topic-teal/25 bg-linear-to-br from-topic-teal/10 to-primary/10 p-4 break-words [overflow-wrap:anywhere]",
             hide,
           )}
         >

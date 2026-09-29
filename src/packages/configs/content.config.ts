@@ -1,16 +1,17 @@
 import type { IconName } from "@/components/ui";
 
-/** Accent colours for topics (dots, icon tiles, card tints, badges). */
+/** Accent colours for topics (dots, icon tiles, card tints, badges).
+ * Values are CSS variables defined in styles/utils/colors.css, so they follow the active theme. */
 export const topicPalette = {
-  sky: "#38bdf8",
-  green: "#34d399",
-  orange: "#fb923c",
-  violet: "#8b7bff",
-  magenta: "#d946ef",
-  blue: "#4f8cff",
-  rose: "#fb4f7a",
-  teal: "#2dd4bf",
-  amber: "#fbbf24",
+  sky: "var(--topic-sky)",
+  green: "var(--topic-green)",
+  orange: "var(--topic-orange)",
+  violet: "var(--topic-violet)",
+  magenta: "var(--topic-magenta)",
+  blue: "var(--topic-blue)",
+  rose: "var(--topic-rose)",
+  teal: "var(--topic-teal)",
+  amber: "var(--topic-amber)",
 } as const;
 
 export type TopicColor = keyof typeof topicPalette;

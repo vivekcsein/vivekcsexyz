@@ -1,7 +1,7 @@
 ---
-description:
+description: "Composable layout primitives for React and Next.js: why to build layouts from reusable components, and how they improve spacing, responsiveness and readability."
 date: 2026-09-12
-keywords: []
+keywords: [react, nextjs, layout components, reusable components, responsive design, tailwind]
 featured: false
 ---
 

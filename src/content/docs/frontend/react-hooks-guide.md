@@ -1,8 +1,8 @@
 ---
-description:
+description: "A complete beginner's guide to React hooks in TypeScript, from useState and useEffect to React 19's useActionState, useOptimistic and use(), plus custom hooks."
 date: 2026-09-12
-keywords: []
-featured: false
+keywords: [react, hooks, typescript, react 19, usestate, useeffect, beginners]
+featured: true
 ---
 
 # React Hooks — The Complete Beginner's Guide (2026 Edition)

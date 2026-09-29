@@ -22,7 +22,7 @@ export const PopularList = ({ docs, viewAllHref }: PopularListProps) => {
           className="flex items-center gap-2.5 text-sm font-semibold"
           id="popular-heading"
         >
-          <Icon className="text-orange-400" name="flame" size={19} />
+          <Icon className="text-topic-orange" name="flame" size={19} />
           Popular This Month
         </h2>
         <Link
@@ -41,7 +41,7 @@ export const PopularList = ({ docs, viewAllHref }: PopularListProps) => {
               href={doc.href}
             >
               <span
-                className={`grid size-11 shrink-0 place-items-center rounded-full border border-border bg-muted/60 text-base font-semibold ${index === 1 ? "text-amber-300" : ""}`}
+                className={`grid size-11 shrink-0 place-items-center rounded-full border border-border bg-muted/60 text-base font-semibold ${index === 1 ? "text-topic-amber" : ""}`}
               >
                 {index + 1}
               </span>

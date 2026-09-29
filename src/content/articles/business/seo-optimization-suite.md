@@ -1,7 +1,7 @@
 ---
-description:
+description: "How poor technical SEO costs revenue, and the 4-tier optimization blueprint used to reach 95+ Lighthouse scores, with deliverables and how to start a site audit."
 date: 2026-09-12
-keywords: []
+keywords: [seo, technical seo, lighthouse, core web vitals, performance, optimization]
 featured: false
 ---
 

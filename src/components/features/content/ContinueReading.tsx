@@ -84,7 +84,7 @@ export const ContinueReading = ({
             role="progressbar"
           >
             <div
-              className="h-full rounded-full bg-linear-to-r from-primary to-[#a86bff]"
+              className="h-full rounded-full bg-linear-to-r from-primary to-brand-to"
               style={{ width: `${Math.max(percent, 3)}%` }}
             />
           </div>

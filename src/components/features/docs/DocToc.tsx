@@ -43,7 +43,7 @@ export const DocToc = ({ items, className }: DocTocProps) => {
           <li key={item.id}>
             <a
               className={cn(
-                "-ml-px block border-l-2 py-1 text-[0.8125rem] leading-snug transition-colors",
+                "-ml-px block break-words border-l-2 py-1 text-[0.8125rem] leading-snug transition-colors [overflow-wrap:anywhere]",
                 item.level === 3 ? "pl-7" : "pl-4",
                 activeId === item.id
                   ? "border-primary font-medium text-primary"

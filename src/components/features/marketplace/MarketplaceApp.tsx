@@ -4,10 +4,10 @@ import { MarketplaceHero } from "./MarketplaceHero";
 
 const MarketplaceApp = () => (
   <>
-    <main id="main">
+    <div>
       <MarketplaceHero />
       <ProductGrid products={marketplaceProducts} />
-    </main>
+    </div>
   </>
 );
 

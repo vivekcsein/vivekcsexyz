@@ -115,7 +115,7 @@ export const CartView = () => {
         </div>
 
         <a
-          className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#25D366] text-sm font-semibold text-black shadow-[0_10px_28px_-10px_rgba(37,211,102,0.7)] transition-transform hover:scale-[1.02]"
+          className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-full bg-whatsapp text-sm font-semibold text-ink shadow-[0_10px_28px_-10px_var(--brand-whatsapp)] transition-transform hover:scale-[1.02]"
           href={buildWhatsappCheckoutUrl(products)}
           rel="noopener noreferrer"
           target="_blank"

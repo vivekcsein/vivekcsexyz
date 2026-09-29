@@ -1,7 +1,7 @@
 ---
-description:
+description: "The best job websites for developers in India and worldwide in 2026, with how each platform type works, a comparison table and a 3-5 platform stack to apply with."
 date: 2026-09-12
-keywords: []
+keywords: [jobs, job search, india, remote work, developers, careers, 2026]
 featured: true
 ---
 

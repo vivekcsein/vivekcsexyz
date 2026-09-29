@@ -35,7 +35,7 @@
     /* follow the .dark class, not the OS */
     color-scheme: light;
     scroll-behavior: smooth;
-    scroll-padding-top: calc(var(--header-h, 3.5rem) + 1rem);
+    scroll-padding-top: calc(var(--header-h, 4rem) + 1rem);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;

@@ -1,7 +1,7 @@
 ---
-description:
+description: "The highest-impact VS Code keyboard shortcuts to memorize first, covering navigation, editing, multi-cursor, search, formatting and debugging."
 date: 2026-09-12
-keywords: []
+keywords: [vs code, shortcuts, productivity, editor, developer tools]
 featured: false
 ---
 

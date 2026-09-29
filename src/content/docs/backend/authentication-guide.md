@@ -1,8 +1,8 @@
 ---
-description:
+description: "A beginner-to-advanced guide to web authentication: XSS, CSRF, cookies, sessions, JWT, OAuth, MFA and RBAC, with full Hono, Express and Fastify implementations."
 date: 2026-09-12
-keywords: []
-featured: false
+keywords: [authentication, security, cookies, jwt, oauth, rbac, hono, express]
+featured: true
 ---
 
 # The Complete Guide to Web Authentication

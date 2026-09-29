@@ -60,7 +60,7 @@ const SecondaryButtonLink = ({
           "w-1/2",
           "skew-x-[-20deg]",
           "bg-linear-to-r",
-          "from-transparent via-white/20 to-transparent",
+          "from-transparent via-paper/20 to-transparent",
           "opacity-0",
 
           "transition-[left,opacity]",

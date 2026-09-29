@@ -1,7 +1,7 @@
 ---
-description:
+description: "How to add a .glb model to the site: register it in models.config.ts, set size and placement, apply animation and scroll effects, plus performance notes and troubleshooting."
 date: 2026-09-12
-keywords: []
+keywords: [3d, glb, three.js, react three fiber, animation, performance]
 featured: false
 ---
 

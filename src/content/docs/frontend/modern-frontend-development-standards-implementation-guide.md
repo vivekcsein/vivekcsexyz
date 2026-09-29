@@ -1,7 +1,7 @@
 ---
-description:
+description: "A Q&A guide to building reusable, responsive, themeable and SEO-friendly Next.js apps: consistent design, layouts, and how to add or edit pages and sections."
 date: 2026-09-12
-keywords: []
+keywords: [nextjs, frontend, standards, theming, responsive design, reusable components, seo]
 featured: false
 ---
 

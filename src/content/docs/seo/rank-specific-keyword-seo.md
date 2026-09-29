@@ -1,7 +1,7 @@
 ---
-description:
+description: "A practical playbook for ranking #1 for a specific keyword: Search Console basics, on-page optimization, schema markup, backlinks, brand presence and tracking."
 date: 2026-09-12
-keywords: []
+keywords: [seo, keyword ranking, google search console, schema markup, backlinks, on-page seo]
 featured: false
 ---
 

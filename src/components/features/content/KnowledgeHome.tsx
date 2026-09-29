@@ -105,7 +105,7 @@ export const KnowledgeHome = () => {
                 <SectionHeading
                   icon={
                     <Icon
-                      className="fill-amber-400 text-amber-400"
+                      className="fill-topic-amber text-topic-amber"
                       name="star"
                       size={18}
                     />

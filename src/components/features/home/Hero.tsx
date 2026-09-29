@@ -28,10 +28,10 @@ const Hero = () => {
 
         <div className="relative z-10 max-w-2xl space-y-8">
           {/* Tagline */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/50 px-4 py-2 backdrop-blur dark:border-slate-800 dark:bg-slate-950/50">
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/50 px-4 py-2 backdrop-blur">
             <span className={cn("h-2 w-2 rounded-full", colors.dot)} />
 
-            <span className="text-sm font-medium text-slate-600 dark:text-slate-400">
+            <span className="text-sm font-medium text-muted-foreground">
               Enterprise-grade foundation
             </span>
           </div>
@@ -58,7 +58,7 @@ const Hero = () => {
               </span>
             </h1>
 
-            <p className="text-balance text-xl leading-relaxed text-slate-600 dark:text-slate-400">
+            <p className="text-balance text-xl leading-relaxed text-muted-foreground">
               Strict TypeScript, Zod validation, Tailwind v4 tokens, and a
               themeable font system. Everything you need to build
               production-ready applications.

@@ -1,7 +1,7 @@
 ---
-description:
+description: "A beginner's guide to creating 3D models in Blender by turning natural-language prompts into Python scripts, with basic shapes, a coffee mug project and a 4-week plan."
 date: 2026-09-12
-keywords: []
+keywords: [blender, python, 3d modeling, ai prompts, beginners]
 featured: false
 ---
 

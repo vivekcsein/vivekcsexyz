@@ -1,7 +1,7 @@
 ---
 description: Standing up a typed REST API with Hono, from an empty project to a validated, deployable route.
 date: 2026-09-14
-keywords: [hono, api, tutorial, typescript]
+keywords: [hono, api, typescript, zod, bun, tutorial]
 ---
 
 # Create an API with Hono

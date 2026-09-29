@@ -1,7 +1,7 @@
 ---
-description:
+description: "Client advisory playbook for Next.js performance: choosing CSR, SSR, SSG or ISR per route, fixing common bottlenecks, plus an audit checklist and SOW templates."
 date: 2026-09-12
-keywords: []
+keywords: [nextjs, performance, app router, server components, rendering, client playbook]
 featured: false
 ---
 

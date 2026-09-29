@@ -32,15 +32,15 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         <div
           className={cn(
             "relative flex h-full flex-col px-4 pb-4 pt-9",
-            isDark ? "text-white" : "text-neutral-900",
+            isDark ? "text-paper" : "text-ink",
           )}
         >
           <div
             className={cn(
               "mb-3 flex items-center gap-3 border-b pb-2 text-[10px]",
               isDark
-                ? "border-white/10 text-white/50"
-                : "border-black/5 text-neutral-400",
+                ? "border-paper/10 text-paper/50"
+                : "border-ink/5 text-ink/40",
             )}
           >
             <span className="flex items-center gap-1 font-semibold">
@@ -50,7 +50,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               >
                 {product.preview.siteName.charAt(0)}
               </span>
-              <span className={isDark ? "text-white/80" : "text-neutral-700"}>
+              <span className={isDark ? "text-paper/80" : "text-ink/70"}>
                 {product.preview.siteName}
               </span>
             </span>
@@ -74,7 +74,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           <span
             className={cn(
               "mkt-badge mt-auto w-fit rounded-md px-2.5 py-1 text-[10px] font-medium",
-              !isDark && "text-white",
+              !isDark && "text-paper",
             )}
           >
             {product.preview.cta}
