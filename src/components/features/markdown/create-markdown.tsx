@@ -73,7 +73,9 @@ export const createMarkdownComponents = (options: Options): Components => ({
   ),
 
   a: ({ href = "", children }) => {
-    if (href.startsWith("/")) return <Link href={href}>{children}</Link>;
+    // "//host/path" is protocol-relative (external), not an internal route.
+    if (href.startsWith("/") && !href.startsWith("//"))
+      return <Link href={href}>{children}</Link>;
     if (href.startsWith("#")) return <a href={href}>{children}</a>;
     return (
       <a href={href} rel="noopener noreferrer" target="_blank">

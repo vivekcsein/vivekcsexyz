@@ -5,9 +5,14 @@ import type { NextConfig } from "next";
 const useProjectPagesBasePath =
   process.env.NEXT_PUBLIC_GH_PROJECT_PAGES === "true";
 const repoName = "vivekcsexyz";
+const basePath = useProjectPagesBasePath ? `/${repoName}` : "";
+const isDev = process.env.NODE_ENV === "development";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  transpilePackages: ["three"],
+  // `*.dev.tsx` files (src/app/dev) are routes only under `next dev`.
+  pageExtensions: ["tsx", "ts", "jsx", "js", ...(isDev ? ["dev.tsx"] : [])],
   /* config options here */
   reactCompiler: true,
   images: {
@@ -19,29 +24,16 @@ const nextConfig: NextConfig = {
   },
 
   output: "export", // static HTML export -> ./out
-  basePath: useProjectPagesBasePath ? `/${repoName}` : "",
-  assetPrefix: useProjectPagesBasePath ? `/${repoName}/` : "",
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : "",
   trailingSlash: true, // GitHub Pages serves /route/index.html cleanly
 
-  poweredByHeader: false,
+  // Exposed so static files in /public (e.g. /init.js) can be referenced
+  // correctly when the site is served from a sub-path.
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
+
   typescript: {
     ignoreBuildErrors: false,
-  },
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "DENY" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          {
-            key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=()",
-          },
-        ],
-      },
-    ];
   },
 };
 

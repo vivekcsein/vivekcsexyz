@@ -40,6 +40,10 @@ export const metadata: Metadata = {
 
   creator: appConfig.author.name,
 
+  // Emitted as <meta name="referrer"> (replaces the Referrer-Policy header,
+  // which a static host can't send).
+  referrer: "strict-origin-when-cross-origin",
+
   openGraph: {
     type: "website",
     siteName: appConfig.site.title,
@@ -65,7 +69,8 @@ export const metadata: Metadata = {
     images: appConfig.site.ogImage ? [appConfig.site.ogImage] : undefined,
   },
 
-  verification: {
-    google: appConfig.verification.google,
-  },
+  // Only emit the tag when a real token is configured (no placeholder in HTML).
+  verification: appConfig.verification.google
+    ? { google: appConfig.verification.google }
+    : undefined,
 };

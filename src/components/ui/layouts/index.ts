@@ -7,10 +7,8 @@
 // parent that toggles Sidebar's `collapsed` state), not in these files.
 
 export { AspectRatio, type AspectRatioProps } from "./AspectRatio";
-export { Box, type BoxElement, type BoxProps } from "./Box";
 export { Center, type CenterProps } from "./Center";
 export { Cluster, type ClusterProps } from "./Cluster";
-export { Container, type ContainerProps } from "./Container";
 export { Grid, type GridColumns, type GridProps } from "./Grid";
 export { Inline, type InlineProps } from "./Inline";
 export { ScrollArea, type ScrollAreaProps } from "./ScrollArea";

@@ -55,8 +55,8 @@ export const StyleProvider = ({ children }: { children: ReactNode }) => {
   // preference is applied after mount, client-side only.
   const THEME = appConfig.site.style as StyleThemeName;
   // Always start at the server value so hydration matches; the saved choice
-  // is applied right after mount (the inline script in layout.tsx already set
-  // data-theme before first paint, so there is no visible flash).
+  // is applied right after mount (/public/init.js already set data-theme before
+  // first paint, so there is no visible flash).
   const [currentTheme, setCurrentTheme] = useState<StyleThemeName>(THEME);
   const isFirstRun = useRef(true);
 
@@ -65,8 +65,11 @@ export const StyleProvider = ({ children }: { children: ReactNode }) => {
 
     if (isValidTheme(stored)) {
       setCurrentTheme(stored);
+    } else {
+      // init.js may have applied an unknown/removed theme name — undo it.
+      document.documentElement.setAttribute("data-theme", THEME);
     }
-  }, []);
+  }, [THEME]);
 
   useEffect(() => {
     // Skip the initial run: it would overwrite the pre-paint theme with THEME.

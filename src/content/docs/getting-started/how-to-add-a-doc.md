@@ -16,16 +16,27 @@ The folder path is the URL: `src/content/<section>/<category>/<slug>.md` becomes
 ```text
 src/content/
 ├── docs/                          →  /docs            (a section, shown in the header)
-│   ├── top-content/               →  /docs/top-content
+│   ├── business/                  →  /docs/business
 │   │   └── best-freelance-platforms-for-dev-teams-2026.md
-│   └── others/
-│       └── how-to-add-a-doc.md    →  /docs/others/how-to-add-a-doc
+│   └── getting-started/
+│       └── how-to-add-a-doc.md    →  /docs/getting-started/how-to-add-a-doc
 └── code/                          →  /code            (a new section — just make the folder)
     └── javascript/
         └── array-methods.md       →  /code/javascript/array-methods
 ```
 
 Use lowercase kebab-case names. A new folder becomes a new category, and a new top-level folder becomes a whole new section with its own page, sidebar and menu link — no code changes.
+
+### Which section and category?
+
+The **section** (top-level folder) is the *type* of content; the **category** (sub-folder) is the *subject*. Reuse an existing category before inventing a new one, and never create a catch-all like `misc` or `others`.
+
+| Section | Put here | Categories in use |
+| --- | --- | --- |
+| `docs` | Evergreen guides and references | `frontend`, `security`, `seo`, `deployment`, `workflow`, `3d`, `ai-prompts`, `business`, `interview`, `getting-started` |
+| `tutorials` | Step-by-step, project-based walkthroughs | `security`, `backend`, `deployment` |
+| `resources` | Cheat-sheets and copy-ready notes | `javascript` |
+| `articles` | Longer-form writing and opinion | `engineering`, `client-advisory` |
 
 ## 2. Write a heading
 

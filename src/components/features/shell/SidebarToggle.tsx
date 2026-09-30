@@ -13,7 +13,7 @@ const isCollapsed = () =>
 
 /**
  * Collapses the sidebar to an icon rail. State lives on <html data-sidebar>
- * (set before first paint by a tiny inline script in the root layout),
+ * (set before first paint by /public/init.js),
  * so there is no layout flash and the choice is remembered.
  */
 export const SidebarToggle = () => {

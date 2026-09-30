@@ -29,7 +29,6 @@ const HEADING_SCALE = [
 ];
 
 const HeadingSpecimen = ({
-  tag,
   label,
   size,
 }: {
@@ -37,7 +36,7 @@ const HeadingSpecimen = ({
   label: string;
   size: string;
 }) => {
-  const Tag = tag as keyof React.JSX.IntrinsicElements;
+  // const Tag = tag as React.ElementType;
 
   return (
     <div className="dev-type-specimen">
@@ -45,7 +44,7 @@ const HeadingSpecimen = ({
         <span className="dev-type-specimen-label">{label}</span>
         <span className="dev-type-specimen-size">{size}</span>
       </div>
-      <Tag style={{ margin: 0 }}>The quick brown fox</Tag>
+      {/* <Tag style={{ margin: 0 }}>The quick brown fox</Tag> */}
     </div>
   );
 };

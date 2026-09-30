@@ -103,7 +103,7 @@ We organize the codebase into clear, purpose-driven folders:
 
 Configuration files (like `app.config.ts` and `home.config.ts`) live inside `packages/configs/`, and the generated theme lives at `styles/themes/current-theme.css`.
 
-_(A full folder-structure reference is available here [folder-structure](/docs/development/folder-structure-guide).)_
+_(A full folder-structure reference is available here [folder-structure](/docs/workflow/folder-structure-guide).)_
 
 ---
 
@@ -115,7 +115,7 @@ We build the interface in layers, smallest pieces first:
 2. **Structural components** — Header, Footer, Sidebar, Navbar
 3. **App Layout** — everything is wrapped in a single `AppClientLayout`, ensuring consistent structure across the entire app
 
-[check ui-component-docs](/docs/development/ui-component-prompt-guide)
+[check ui-component-docs](/docs/ai-prompts/ui-component-prompt-guide)
 
 By the end of this stage, the full layout and theme are complete and consistent site-wide.
 

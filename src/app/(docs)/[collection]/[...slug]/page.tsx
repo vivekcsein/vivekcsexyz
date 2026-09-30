@@ -9,6 +9,7 @@ import { DocToc } from "@/components/features/docs/DocToc";
 import { ReadingTracker } from "@/components/features/docs/ReadingTracker";
 import { RelatedDocs } from "@/components/features/docs/RelatedDocs";
 import { Markdown } from "@/components/features/markdown/Markdown";
+import { JsonLd } from "@/components/features/seo/JsonLd";
 import { Breadcrumbs, Icon, ProgressBar } from "@/components/ui";
 import { Badge } from "@/components/ui/badge/Badge";
 import appConfig from "@/packages/configs/app.config";
@@ -106,7 +107,7 @@ const RoutePage = async ({ params }: RoutePageProps) => {
     const midAdId =
       sections.length >= MID_AD_MIN_SECTIONS ? sections[2]?.id : undefined;
 
-    const _jsonLd = {
+    const jsonLd = {
       "@context": "https://schema.org",
       "@type": "Article",
       headline: doc.title,
@@ -210,6 +211,8 @@ const RoutePage = async ({ params }: RoutePageProps) => {
             <AdSlot slot="rail" />
           </div>
         </aside>
+
+        <JsonLd data={jsonLd} />
       </div>
     );
   }

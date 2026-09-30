@@ -127,12 +127,12 @@ export const KnowledgeSidebar = ({
             <Icon name="book-open" size={19} />
           </span>
           <div className="min-w-0 leading-tight">
-            <p className="min-w-0 break-words [overflow-wrap:anywhere] text-sm font-semibold">
+            {/* <p className="min-w-0 break-words [overflow-wrap:anywhere] text-sm font-semibold">
               {shellConfig.sidebar.title}
             </p>
             <p className="mt-0.5 min-w-0 break-words [overflow-wrap:anywhere] text-[11px] text-muted-foreground">
               {shellConfig.sidebar.subtitle}
-            </p>
+            </p> */}
           </div>
         </div>
         {compactable && <SidebarToggle />}

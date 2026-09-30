@@ -70,11 +70,11 @@ const parsedEnvSchema = z.object({
     .default("Discipline turns ideas into results."),
 
   // Google Verification
-  NEXT_PUBLIC_GOOGLE_VERIFICATION: z
-    .string()
-    .trim()
-    .min(1)
-    .default("google-verification-code"),
+  // Blank (e.g. an unset CI variable) means "not configured".
+  NEXT_PUBLIC_GOOGLE_VERIFICATION: z.preprocess(
+    (value) => (value === "" ? undefined : value),
+    z.string().trim().min(1).optional(),
+  ),
 });
 
 // Validated Public Environment
