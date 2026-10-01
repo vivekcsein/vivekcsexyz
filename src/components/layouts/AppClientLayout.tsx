@@ -3,7 +3,7 @@ import { SearchProvider } from "../features/search/SearchProvider";
 import NavigationProvider from "../providers/NavigationProvider";
 import { StyleProvider } from "../providers/StyleProvider";
 import ThemeProvider from "../providers/ThemeProvider";
-import BackgroundGridEffect from "../ui/backgrounds/BackgroundGridEffect";
+import BackgroundFadeEffectImage from "../ui/backgrounds/BackgroundFadeEffectImage";
 import Footer from "./Footer";
 import Header from "./Header";
 
@@ -17,7 +17,12 @@ const AppClientLayout = ({ children }: AppClientLayoutProps) => {
         <NavigationProvider>
           <SearchProvider index={getSearchIndex()}>
             <Header />
-            <BackgroundGridEffect />
+            {/* <BackgroundGridEffect /> */}
+            <BackgroundFadeEffectImage
+              images={[
+                { src: "/images/backgrounds/bg-01.jpg", alt: "Background" },
+              ]}
+            />
             <main className="main screen-height" id="main">
               {children}
             </main>
