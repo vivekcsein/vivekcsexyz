@@ -38,8 +38,8 @@
     "lucide-react": "^1.49.0",
     "next": "16.3.6",
     "next-themes": "^0.4.6",
-    "react": "19.2.8",
-    "react-dom": "19.2.8",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
     "react-hook-form": "^7.89.0",
     "react-markdown": "^10.1.0",
     "rehype-highlight": "^7.0.2",
@@ -52,7 +52,7 @@
     "zod-validation-error": "^5.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.2",
+    "@biomejs/biome": "2.5.14",
     "@commitlint/cli": "^21.2.3",
     "@commitlint/config-conventional": "^21.2.3",
     "@gltf-transform/core": "^4.5.1",
