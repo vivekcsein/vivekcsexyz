@@ -11,7 +11,8 @@ export type DevSection =
   | "styles"
   | "Links"
   | "Cards"
-  | "marquee";
+  | "marquee"
+  | "models";
 
 type DevContextValue = {
   activeSection: DevSection;

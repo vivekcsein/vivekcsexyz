@@ -31,6 +31,10 @@ const NAV_SECTIONS: {
       { label: "Cards", id: "Cards" },
     ],
   },
+  {
+    label: "3D",
+    items: [{ label: "Model lab", id: "models" }],
+  },
 ];
 
 /**

@@ -24,7 +24,7 @@ export default function RootLayout({
       <head>
         {/* Static same-origin script: applies saved theme + sidebar state
             before first paint and blocks framing. See public/init.js. */}
-        <script src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/init.js`} />
+        <script src={`${appConfig.site.basePath}/init.js`} />
       </head>
       <body suppressHydrationWarning={true}>
         <AppClientLayout>{children}</AppClientLayout>

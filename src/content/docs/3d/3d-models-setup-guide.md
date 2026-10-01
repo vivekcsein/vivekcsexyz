@@ -1,5 +1,5 @@
 ---
-description: "How to add a .glb model to the site: register it in models.config.ts, set size and placement, apply animation and scroll effects, plus performance notes and troubleshooting."
+description: "How a GLB gets onto the site: optimize it with one command, register it in model3d.config.ts, tune it live in the dev Model lab, then place it with ClientModelViewer."
 date: 2026-09-12
 keywords: [3d, glb, three.js, react three fiber, animation, performance]
 featured: false
@@ -7,175 +7,189 @@ featured: false
 
 # Setting Up 3D Elements (GLB Models)
 
-How to take a `.glb` file from your 3D designer and get it on the site —
-correctly sized, positioned, and animated — without writing new
-Three.js/R3F code every time.
+How to take a `.glb` file from Blender (or your 3D designer) and get it on
+the site — optimized, correctly sized, positioned, animated and themed —
+without writing new Three.js/R3F code each time.
 
 ## How it fits together
 
 ```
-public/models/*.glb                 ← designer drops files here
-src/packages/configs/models.config.ts  ← register each file: size, position, animation
+models-src/*.glb                      ← raw exports from Blender (keep these)
+        │  bun run models:optimize
+        ▼
+public/models/*.glb                   ← web-ready files the site serves
+src/packages/configs/model3d.config.ts   ← one entry per model: size, position, animation, effects
+src/packages/configs/models.manifest.ts  ← auto-generated list of files that exist (models:sync)
 src/components/features/models/
-  Model3D.tsx          ← loads + auto-fits + animates ONE model (raw R3F component)
-  ModelViewer.tsx       ← Canvas + lighting + a registered model, by key
-  ClientModelViewer.tsx ← SSR-safe wrapper — use THIS one in pages/sections
+  ClientModelViewer.tsx   ← USE THIS in pages (lazy, SSR-safe, pauses off-screen)
+  ModelViewer.tsx         ← Canvas + lights + model + effects
+  GlbModel.tsx            ← loads, auto-fits and animates one GLB
+  PlaceholderModel.tsx    ← stand-in shown until the GLB exists
+  effects/                ← underglow, orbit rings, floating tiles, sparkles, parallax
 ```
 
-You should almost never touch `Model3D.tsx`/`ModelViewer.tsx` day to day.
-The normal workflow is: **drop the file → add one entry to
-`models.config.ts` → drop `<ClientModelViewer modelKey="..." />` where you
-want it.**
+The normal workflow is: **drop the raw file → `bun run models:optimize` →
+tune in the Model lab → paste the values into `model3d.config.ts` → place
+`<ClientModelViewer modelKey="…" />`.**
+
+Every slot already exists in `model3d.config.ts` with a procedural
+placeholder, so you can build the page and the effects _before_ a model is
+exported. The moment `public/models/<file>` exists, the real model replaces
+the placeholder — no code change.
 
 ## 1. Getting the file from your designer
 
-- Format: **`.glb`** (binary glTF — single file, textures embedded). Ask
-  for `.glb`, not `.gltf` + separate texture folder.
-- Keep triangle count reasonable for the web — a few thousand tris per
-  model is plenty for anything that isn't a hero centerpiece.
-- If the designer baked in an animation (idle spin, hover bob, etc.),
-  ask them for the **exact clip name** — you'll need it for the `clip`
-  field below.
-- Drop the file in `public/models/your-model.glb`. It's now served at
-  `/models/your-model.glb`.
+- Format: **`.glb`** (single file, textures embedded), not `.gltf` + folder.
+- Origin at the **centre of the model's base**, facing +Z, Y up. Apply scale
+  and rotation in Blender before export.
+- No backdrop planes or lights baked in — the page provides those. (If one
+  slips through, list its material in `optimize.drop`.)
+- Give emissive parts real emissive materials (screens, neon) — they pick up
+  the theme's glow.
+- If there is a baked animation, note the **exact clip name** for `clip`.
+- Drop the file in **`models-src/`** using the `file` name from the config
+  (e.g. `models-src/avatar.glb`).
 
-## 2. Register it in `models.config.ts`
+## 2. Optimize
 
-This file is the single source of truth for every model's size,
-placement, and animation — nothing is hardcoded per-usage.
-
-```ts
-// src/packages/configs/models.config.ts
-export const modelsConfig = {
-  basePath: "/models",
-  items: [
-    {
-      key: "showcase-web-apps", // ← you reference the model by this key
-      src: "/models/web-apps.glb",
-      size: 1.6, // scene units — see "Sizing" below
-      position: [0, 0, 0], // optional offset after auto-centering
-      rotation: [0, 0, 0], // optional, radians
-      animation: "float-spin", // see "Animation presets" below
-      clip: undefined, // set this if the GLB has a baked-in clip to play
-    },
-    // ...add your new model here
-  ],
-} as const;
+```bash
+bun run models:optimize                # every model that has a raw file
+bun run models:optimize hero-workstation   # one model, by key or file name
 ```
 
-## 3. Sizing & placement — how "size" works
+Reads `models-src/`, writes `public/models/`. It drops unwanted materials,
+merges meshes that share a material (fewer draw calls), welds vertices,
+optionally simplifies, quantizes and prunes. Example (the hero desk):
 
-You don't need to know or fix the scale your designer exported at.
-`Model3D` measures the model's bounding box on load and uniformly scales
-it so its **largest axis equals `size`** (in Three.js scene units), then
-centers it. This means:
+| | Before | After |
+| --- | --- | --- |
+| File size | 3.25 MB | 1.03 MB |
+| Triangles | 148,392 | 65,201 |
+| Draw calls | 179 | 28 |
 
-- A model exported at `10cm` and one exported at `10m` in Blender will
-  both render at the same visual size on the page if you give them the
-  same `size` value.
-- To make one model consistently bigger/smaller than another, just change
-  its `size` number — don't ask the designer to re-scale and re-export.
-- `position`/`rotation` are applied **after** auto-centering, so they're
-  small nudges (e.g. `[0, -0.4, 0]` to sit a desk model slightly lower),
-  not full placement math.
+Per-model options live in the config:
 
-**Picking a `size` value** — rule of thumb for this project's camera
-setup (`fov: 40`, camera ~5 units back):
+```ts
+optimize: { simplify: 0.4, drop: ["Backdrop_Gradient"], maxTexture: 1024 },
+```
 
-| Use case                           | Suggested `size` |
-| ---------------------------------- | ---------------- |
-| Small showcase tile (grid of 4)    | `1.4 – 1.8`      |
-| Section hero (like the desk scene) | `2.5 – 3.5`      |
-| Full-bleed/background centerpiece  | `4+`             |
+`bun run models:sync` (runs automatically before `dev`/`build`) prints which
+slots are still placeholders and warns when a file is over budget
+(1.5 MB, hero 2.5 MB).
 
-## 4. Animation presets
+> Draco/Meshopt _compression_ is deliberately not used: it needs a WASM
+> decoder at runtime, which the site's CSP does not allow.
 
-Set the `animation` field per model in the config:
+## 3. Register and tune it
 
-| Preset         | What it does                                                    |
-| -------------- | --------------------------------------------------------------- |
-| `"none"`       | Static, no motion.                                              |
-| `"float"`      | Gentle up/down drift + slight rotation (drei's `<Float>`).      |
-| `"spin"`       | Continuous slow Y-axis rotation.                                |
-| `"float-spin"` | Float **and** spin together — default for showcase tiles.       |
-| `"entrance"`   | One-time GSAP "pop in" (scale 0 → 1, `back.out` ease) on mount. |
+```ts
+// src/packages/configs/model3d.config.ts
+{
+  key: "showcase-database",          // ← you reference the model by this key
+  file: "database.glb",              // ← name inside public/models
+  placeholder: "database",           // ← shown until the file exists
+  size: 1.7,                         // ← largest axis, in scene units
+  position: [0, 0, 0],               // ← nudge after auto-centering
+  rotation: [0, 0, 0],               // ← radians
+  animation: "float-spin",
+  clip: undefined,                   // ← baked clip name, if any
+  camera: { position: [0, 1.2, 6], fov: 40 },
+  effects: [{ type: "underglow" }, { type: "orbit-rings", count: 2 }],
+}
+```
 
-If the GLB itself has a **baked-in animation clip** (something the
-designer keyframed in Blender — an idle loop, a door opening, etc.), set
-`clip: "ClipNameFromBlender"`. This plays independently of the
-`animation` preset — you can have `animation: "float"` _and_ `clip:
-"Idle"` running at the same time.
+**Tune it live:** run `bun dev`, open `/dev` → **Model lab**. Pick a slot,
+drag the sliders for size / position / rotation / camera / effects, watch the
+FPS counter, then press **Copy values** and paste them into the entry. The
+lab only exists in development; it is not in the production build.
 
-> Don't know the clip name? Load the model once with no `clip` set and
-> log `console.log(animations.map(a => a.name))` — see `useGLTF` in
-> `Model3D.tsx` (the `animations` array comes straight from the GLB).
+## 4. Sizing
 
-## 5. Placing it on a page
+You don't need to know the scale your designer exported at. On load the
+model is measured and uniformly scaled so its **largest axis equals `size`**,
+then centred. Change `size` to make a model bigger or smaller — never ask
+for a re-export.
 
-Always import the **`ClientModelViewer`**, not `ModelViewer` directly —
-`ModelViewer` renders an R3F `<Canvas>`, which cannot be server-rendered.
-`ClientModelViewer` wraps it in `next/dynamic({ ssr: false })` for you.
+| Use case | Suggested `size` |
+| --- | --- |
+| Small showcase tile (grid of 4) | `1.4 – 1.8` |
+| Section hero (desk, avatar, globe) | `3 – 4` |
+| Full-bleed centerpiece | `4+` |
+
+## 5. Animation presets
+
+| Preset | What it does |
+| --- | --- |
+| `"none"` | Static. |
+| `"float"` | Gentle up/down drift with slight tilt. |
+| `"spin"` | Slow continuous Y rotation. |
+| `"float-spin"` | Both — default for showcase tiles. |
+| `"entrance"` | One-time GSAP "pop in" (scale 0 → 1). |
+
+A baked clip (`clip: "Idle"`) plays independently of the preset. All motion
+switches off when the visitor has _reduce motion_ enabled. Wrong clip name?
+In development the console lists the available names.
+
+## 6. Effects
+
+Listed per model in `effects`. Every colour comes from the active theme
+(`--primary`, `--accent-foreground`, …) and updates when the theme changes —
+never hard-code a colour in a 3D component.
+
+| `type` | Look |
+| --- | --- |
+| `"underglow"` | Pulsing neon glow + ring on the floor under the model. |
+| `"orbit-rings"` (`count`) | Thin glowing rings turning around the model. |
+| `"tiles"` (`items`) | Glass tiles hovering around it (React / TS / Next…). |
+| `"sparkles"` (`count`) | Faint drifting dots. |
+| `"pointer-parallax"` (`strength`) | Whole scene eases toward the cursor. |
+
+To add an effect: create a component in `models/effects/`, add its `type`
+to `ModelEffect` in the config, and map it in `effects/index.tsx`.
+
+## 7. Placing it on a page
+
+Always use **`ClientModelViewer`** (the Canvas can't be server-rendered).
 
 ```tsx
-import ClientModelViewer from "@/components/features/models/ClientModelViewer";
+import { ClientModelViewer } from "@/components/features/models/ClientModelViewer";
 
 const ShowcaseCard = () => (
   <div className="aspect-square rounded-3xl border border-border">
-    <ClientModelViewer modelKey="showcase-web-apps" className="h-full w-full" />
+    <ClientModelViewer modelKey="showcase-database" />
   </div>
 );
 ```
 
-- `modelKey` — the `key` you gave it in `models.config.ts`.
-- `className` — sizing/layout is entirely up to the parent container;
-  the viewer fills `100%` of its parent's width/height. Always give the
-  parent an explicit height (a fixed height, `aspect-square`, etc.) —
-  Canvas has no intrinsic size.
-- `interactive` (optional, default `false`) — set `interactive` to allow
-  visitors to drag-orbit the model. Leave this off for decorative/grid
-  tiles; only turn it on for a dedicated "explore this model" view.
+| Prop | Meaning |
+| --- | --- |
+| `modelKey` | The `key` from `model3d.config.ts`. |
+| `className` | Sizing is up to the parent — give it an explicit height. |
+| `eager` | Mount immediately (above-the-fold hero). Default: when scrolled near. |
+| `interactive` | Visitors can drag-orbit. Leave off for decorative tiles. |
+| `overrides` | Override size / position / effects for one usage. |
 
-```tsx
-<ClientModelViewer modelKey="hero-desk-setup" className="h-120" interactive />
-```
+## 8. Performance and security notes
 
-## 6. Combining with scroll animation
-
-`ClientModelViewer` only handles the model's _own_ motion (float/spin/
-entrance). To also have the whole viewer fade/slide in as the visitor
-scrolls to it, wrap it in the project's existing `<Reveal>` component
-(GSAP ScrollTrigger — see `src/components/ui/reveal/Reveal.tsx`):
-
-```tsx
-import Reveal from "@/components/ui/reveal/Reveal";
-import ClientModelViewer from "@/components/features/models/ClientModelViewer";
-
-<Reveal direction="up" className="h-72">
-  <ClientModelViewer modelKey="showcase-database" className="h-full w-full" />
-</Reveal>;
-```
-
-## 7. Performance notes
-
-- Each model is lazy-loaded on the client and code-split from the main
-  bundle — pages with no 3D content pay nothing extra.
-- Prefer `"float"`/`"spin"` (cheap, per-frame transform only) over
-  `clip` playback for simple decorative motion — reserve baked clips for
-  motion that's genuinely hard to fake procedurally (mechanical parts,
-  character rigs).
-- If you have many tiles on one page (e.g. a 4-up showcase grid), keep
-  `size` modest (1.4–1.8) and skip `interactive` — four separate
-  `OrbitControls` instances is unnecessary GPU/JS overhead.
-- Call `preloadModel("/models/your-model.glb")` (exported from
-  `Model3D.tsx`) ahead of a route/section transition if you want to avoid
-  pop-in on first view.
+- Three.js loads in its own chunk, only when a viewer is within 300 px of
+  the viewport, and rendering pauses while it is off-screen.
+- Pixel ratio is capped and drops automatically if the frame rate falls.
+- No WebGL (or a failed GLB) shows a CSS glow / the placeholder — never a
+  broken page.
+- Keep the 4-up showcase light: `size` ≈ 1.7, no `interactive`, ~1 effect
+  pair each.
+- The strict CSP blocks third-party fetches, so don't use drei's
+  `<Environment preset="…">` (it downloads an HDR). Lights use a built-in
+  procedural environment.
 
 ## Troubleshooting
 
-| Symptom                                        | Likely cause                                                                                                                                                                                                                 |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Model doesn't appear, no error                 | Wrong `key` passed to `modelKey`, or `src` path doesn't match the file in `public/models/`. Check the browser console — `ModelViewer` warns on a missing config key.                                                         |
-| Model appears tiny or huge                     | `size` too small/large for this model's proportions — adjust the number, not the GLB.                                                                                                                                        |
-| Model appears off-center                       | Something in the GLB has a large offset baked in — auto-centering handles the mesh bounding box, but double check the designer didn't leave a stray empty/light far from origin (it gets included in the bounding-box calc). |
-| `clip` doesn't play                            | Clip name typo — log `animations.map(a => a.name)` to confirm the exact string.                                                                                                                                              |
-| Hydration/SSR error mentioning `WebGLRenderer` | You imported `ModelViewer` directly instead of `ClientModelViewer`.                                                                                                                                                          |
+| Symptom | Likely cause |
+| --- | --- |
+| Slot shows the placeholder | The file isn't in `public/models/` yet, or the `file` name doesn't match. Run `bun run models:sync`. |
+| Model tiny or huge | Adjust `size`, not the GLB. |
+| Model off-centre | A stray empty/light far from the origin is counted in the bounds — delete it in Blender. |
+| Parts look flat/dark | Missing emissive on glowing parts, or the material was merged/dropped — check `optimize.drop`. |
+| `clip` doesn't play | Name typo — the dev console lists the real clip names. |
+| Hydration error mentioning `WebGLRenderer` | A viewer was imported directly instead of `ClientModelViewer`. |
+| Works locally, not on GitHub Pages sub-path | Don't hard-code `/models/…`; the viewer prefixes the base path itself. |

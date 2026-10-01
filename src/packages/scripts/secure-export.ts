@@ -90,7 +90,8 @@ const appPolicy = (scriptHashes: string[], hasAds: boolean) => {
       ...(hasAds ? ["https:"] : IMAGE_HOSTS),
     ],
     "font-src": ["'self'", "data:"], // next/font self-hosts at build time
-    "connect-src": ["'self'", ...(hasAds ? ADS.connect : [])],
+    // blob: — three.js decodes GLB-embedded textures via fetch(blob:…).
+    "connect-src": ["'self'", "blob:", ...(hasAds ? ADS.connect : [])],
     "frame-src": hasAds ? ADS.frame : ["'none'"],
     "object-src": ["'none'"],
     "base-uri": ["'self'"],

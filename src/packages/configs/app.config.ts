@@ -21,6 +21,7 @@ const appConfig = {
     title: envPublicConfig.SITE_TITLE,
     description: envPublicConfig.APP_DESCRIPTION,
     url: envPublicConfig.SITE_URL,
+    basePath: envPublicConfig.BASE_PATH,
     logo: envPublicConfig.LOGO_URL,
     ogImage: envPublicConfig.OG_IMAGE_URL,
     theme: envPublicConfig.ACTIVE_THEME,
