@@ -1,13 +1,21 @@
 import MarqueePanel from "@/app/dev/panels/MarqueePanel";
-import Hero from "./Hero";
-import HeroWorkStation from "./HeroWorkStation";
+import CtaSection from "./sections/CtaSection";
+import { Hero } from "./sections/Hero";
+import Journey from "./sections/Journey";
+import Metrics from "./sections/Metrics";
+import Showcase from "./sections/Showcase";
+import TechStack from "./sections/TechStack";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
-      <HeroWorkStation />
       <MarqueePanel />
+      <TechStack />
+      <Metrics />
+      <Journey />
+      <Showcase />
+      <CtaSection />
     </>
   );
 }

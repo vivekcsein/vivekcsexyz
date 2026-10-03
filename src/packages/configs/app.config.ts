@@ -1,7 +1,6 @@
 import { envAppConfig } from "../env/app.env";
 import { envClientConfig } from "../env/client.env";
 import { envPublicConfig } from "../env/public.env";
-import { siteConfig } from "./site.config";
 import { themeConfig } from "./theme.config";
 
 const apiBaseUrl = `${envClientConfig.clientOrigin}/${envClientConfig.clientPrefix}`;
@@ -27,7 +26,6 @@ const appConfig = {
     theme: envPublicConfig.ACTIVE_THEME,
     style: envPublicConfig.ACTIVE_STYLE,
     titleTemplate: "%s | VivekCSE Portfolio",
-    ...siteConfig,
   },
 
   // Author

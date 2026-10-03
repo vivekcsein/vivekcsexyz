@@ -27,6 +27,7 @@ import {
   CreditCard,
   Database,
   Diamond,
+  Download,
   FileText,
   Flag,
   Flame,
@@ -38,6 +39,7 @@ import {
   HeartPulse,
   Home,
   Image,
+  Laptop,
   Layers,
   LayoutGrid,
   Link2,
@@ -49,8 +51,10 @@ import {
   Menu,
   Monitor,
   Moon,
+  Mouse,
   Package,
   PanelLeft,
+  Pin,
   Plus,
   Quote,
   Rocket,
@@ -90,6 +94,7 @@ export const lucideIcons = {
   "chevron-right": ChevronRight,
   "arrow-left": ArrowLeft,
   "arrow-right": ArrowRight,
+  download: Download,
   "corner-down-left": CornerDownLeft,
 
   // Actions
@@ -116,6 +121,7 @@ export const lucideIcons = {
   user: User,
   "user-plus": UserPlus,
   mail: Mail,
+  mouse: Mouse,
   "at-sign": AtSign,
 
   // Commerce
@@ -179,6 +185,8 @@ export const lucideIcons = {
   "flask-conical": FlaskConical,
   "list-checks": ListCheck,
   zap: Zap,
+  pin: Pin,
+  laptop: Laptop,
 } satisfies Record<string, LucideIcon>;
 
 export type LucideIconName = keyof typeof lucideIcons;

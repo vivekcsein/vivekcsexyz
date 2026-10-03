@@ -3,8 +3,8 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { Icon, type IconName } from "@/components/ui";
-import appConfig from "@/packages/configs/app.config";
 import { imagesConfig } from "@/packages/configs/images.config";
+import { siteConfig } from "@/packages/configs/site.config";
 import { useCountUp } from "@/packages/hooks";
 import type { KnowledgeStats } from "@/types/content";
 
@@ -127,7 +127,7 @@ export const DocsHero = ({ stats }: DocsHeroProps) => {
   const words = useCountUp(stats.words, { duration: 1300 });
 
   const image = imagesConfig.heroImages.contentImages[0];
-  const { hero } = appConfig.site;
+  const { article: hero } = siteConfig.hero;
 
   return (
     <section
