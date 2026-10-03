@@ -89,15 +89,15 @@ export const Hero = () => {
         className="pointer-events-none absolute left-0 top-0 -z-10 size-48 bg-[radial-gradient(circle,var(--primary)_1px,transparent_1px)] bg-size-[12px_12px] opacity-20 mask-[linear-gradient(to_bottom_right,black,transparent)]"
       />
 
-      <div className="mx-auto grid min-h-[inherit] max-w-7xl items-center gap-4 px-5 pb-20 pt-10 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-6 lg:px-10 lg:pb-24 lg:pt-6">
+      <div className="mx-auto grid min-h-[inherit] max-w-7xl grid-cols-[minmax(0,1fr)] items-center gap-2 px-5 pb-20 pt-10 sm:px-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-6 lg:px-10 lg:pb-24 lg:pt-6">
         {/* Copy */}
-        <div className="flex max-w-xl flex-col items-start">
+        <div className="flex max-w-xl flex-col items-center justify-self-center text-center lg:items-start lg:justify-self-auto lg:text-left">
           <p className="rounded-full border border-border bg-card/60 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground backdrop-blur">
             {main.eyebrow}
           </p>
 
           <h1 className="mt-5 text-balance text-4xl font-bold leading-[1.08] tracking-[-0.03em] text-foreground sm:text-5xl lg:text-[3.35rem]">
-            {main.headline.map((line) => (
+            {main.headline.map((line, index) => (
               <span key={line.map((s) => s.text).join("")} className="block">
                 {line.map((segment: HeadlineSegment) =>
                   segment.highlight ? (
@@ -107,21 +107,25 @@ export const Hero = () => {
                   ) : (
                     <span key={segment.text}>{segment.text}</span>
                   ),
-                )}{" "}
+                )}
+                {index === main.headline.length - 1 ? (
+                  /* Typing caret, on the same line as the last word */
+                  <span
+                    aria-hidden="true"
+                    className="invisible ml-1.5  h-[0.85em] w-[0.09em] translate-y-[0.08em] bg-primary motion-safe:animate-pulse"
+                  />
+                ) : (
+                  " "
+                )}
               </span>
             ))}
-            {/* Typing caret on the last line */}
-            <span
-              aria-hidden="true"
-              className="ml-1 inline-block h-[0.85em] w-[0.09em] translate-y-[0.08em] bg-primary motion-safe:animate-pulse"
-            />
           </h1>
 
-          <p className="mt-5 max-w-md text-sm leading-6 text-muted-foreground sm:text-[0.9375rem] sm:leading-7">
+          <p className="mt-5 max-w-md text-balance text-sm leading-6 text-muted-foreground sm:text-[0.9375rem] sm:leading-7">
             {main.subtitle}
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
             <Link href={main.primaryCta.href} variant="primary-button">
               {main.primaryCta.label}
               <Icon
@@ -141,7 +145,7 @@ export const Hero = () => {
             </Link>
           </div>
 
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
             <span className="text-xs text-muted-foreground">
               {main.connect.label}
             </span>
@@ -160,7 +164,7 @@ export const Hero = () => {
 
         {/* 3D scene — explicit height; the viewer fills its parent */}
         <div className="relative h-88 sm:h-120 lg:h-144">
-          <ClientModelViewer eager modelKey="hero-workstation" />
+          <ClientModelViewer eager fadeEdges modelKey="hero-workstation" />
         </div>
       </div>
 

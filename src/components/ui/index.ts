@@ -24,6 +24,7 @@ export { Link, type LinkUnderline, type LinkVariants } from "./links/Link";
 export { default as Marquee } from "./marquee/Marquee";
 export { ProgressBar } from "./progress/ProgressBar";
 export { default as Reveal } from "./reveal/Reveal";
+export { ScrollStack, ScrollStackItem } from "./scroll-stack/ScrollStack";
 export { Select } from "./select/Select";
 export { default as EyeClose } from "./svg/EyeClose";
 export { default as EyeOpen } from "./svg/EyeOpen";

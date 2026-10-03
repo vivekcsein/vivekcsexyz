@@ -79,7 +79,9 @@ export const MODELS = [
     position: [0, -0.2, 0],
     rotation: [0.12, -0.5, 0],
     animation: "float",
-    camera: { position: [0, 1.4, 7], fov: 38 },
+    // y≈0 centres the scene vertically (a camera at y=1.4 looks straight ahead,
+    // so everything sat low in the frame and the desk was cropped).
+    camera: { position: [0, 0.1, 7.5], fov: 38 },
     effects: [
       { type: "underglow" },
       { type: "tiles", items: ["React", "Next", "TS", "JS", "DB", "</>"] },

@@ -6,8 +6,12 @@ import {
   PerspectiveCamera,
   Stats,
 } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { Suspense, useState } from "react";
+import { Canvas, useThree } from "@react-three/fiber";
+import { Suspense, useEffect, useState } from "react";
+import {
+  MathUtils,
+  type PerspectiveCamera as ThreePerspectiveCamera,
+} from "three";
 import {
   getModel,
   type Model3D,
@@ -39,6 +43,38 @@ type ModelViewerProps = {
 };
 
 const MAX_DPR = 1.75;
+
+/**
+ * Half-width of the scene (tiles, rings) as a multiple of `model.size`.
+ * The camera is pulled back just enough that this always fits horizontally,
+ * so tall/narrow boxes (phones) never crop the scene. Wide boxes are unaffected.
+ */
+const SCENE_HALF_WIDTH = 0.76;
+
+type FitCameraProps = {
+  position: readonly [number, number, number];
+  size: number;
+};
+
+const FitCamera = ({ position, size }: FitCameraProps) => {
+  const camera = useThree((state) => state.camera) as ThreePerspectiveCamera;
+  const aspect = useThree((state) => state.size.width / state.size.height);
+  const invalidate = useThree((state) => state.invalidate);
+
+  useEffect(() => {
+    const halfFov = MathUtils.degToRad(camera.fov / 2);
+    const needed = (size * SCENE_HALF_WIDTH) / (Math.tan(halfFov) * aspect);
+    camera.position.set(
+      position[0],
+      position[1],
+      Math.max(position[2], needed),
+    );
+    camera.updateProjectionMatrix();
+    invalidate();
+  }, [camera, aspect, position, size, invalidate]);
+
+  return null;
+};
 
 export const ModelViewer = ({
   modelKey,
@@ -79,6 +115,7 @@ export const ModelViewer = ({
           makeDefault
           position={[...model.camera.position]}
         />
+        <FitCamera position={model.camera.position} size={model.size} />
         <PerformanceMonitor
           onDecline={() => setMaxDpr(1)}
           onIncline={() => setMaxDpr(MAX_DPR)}

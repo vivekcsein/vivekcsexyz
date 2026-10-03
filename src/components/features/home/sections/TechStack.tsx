@@ -40,7 +40,7 @@ const TechStack = () => {
               px-1
               pt-1
               pb-1
-              scrollbar-none
+              no-scrollbar
               [-ms-overflow-style:none]
               [&::-webkit-scrollbar]:hidden
             "

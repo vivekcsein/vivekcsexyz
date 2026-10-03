@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { type CSSProperties, useEffect, useState } from "react";
 import type { ModelKey } from "@/packages/configs/model3d.config";
 import { useInView } from "@/packages/hooks";
 import { cn } from "@/packages/utils/cn";
@@ -23,6 +23,20 @@ type ClientModelViewerProps = {
   /** Mount immediately (above-the-fold hero) instead of when scrolled near. */
   eager?: boolean;
   showStats?: boolean;
+  /** Fade all four edges to transparent so the canvas blends into the page. */
+  fadeEdges?: boolean;
+};
+
+const FADE_X =
+  "linear-gradient(to right, transparent, black 12%, black 88%, transparent)";
+const FADE_Y =
+  "linear-gradient(to bottom, transparent, black 10%, black 88%, transparent)";
+
+const FADE_STYLE: CSSProperties = {
+  maskImage: `${FADE_X}, ${FADE_Y}`,
+  maskComposite: "intersect",
+  WebkitMaskImage: `${FADE_X}, ${FADE_Y}`,
+  WebkitMaskComposite: "source-in",
 };
 
 const supportsWebGL = () => {
@@ -47,6 +61,7 @@ export const ClientModelViewer = ({
   overrides,
   eager = false,
   showStats,
+  fadeEdges = false,
 }: ClientModelViewerProps) => {
   const { ref, inView } = useInView<HTMLDivElement>({ rootMargin: "300px" });
   const [armed, setArmed] = useState(eager);
@@ -61,7 +76,11 @@ export const ClientModelViewer = ({
   }, [inView]);
 
   return (
-    <div ref={ref} className={cn("relative h-full w-full", className)}>
+    <div
+      ref={ref}
+      className={cn("relative h-full w-full", className)}
+      style={fadeEdges ? FADE_STYLE : undefined}
+    >
       {armed && webgl ? (
         <ModelViewer
           active={eager ? true : inView}

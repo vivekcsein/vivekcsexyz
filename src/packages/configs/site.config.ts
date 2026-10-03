@@ -51,6 +51,7 @@ export type ShowcaseItem = {
     readonly src: string;
     readonly alt: string;
   };
+  readonly description: string;
 };
 
 export type SiteConfig = {
@@ -401,36 +402,44 @@ export const siteConfig = {
         icon: "laptop",
         modelKey: "showcase-web-apps",
         image: {
-          src: "/images/web-apps.jpg",
+          src: "/images/card/web-apps.jpg",
           alt: "Web Apps",
         },
+        description:
+          "Fast, accessible Next.js and React interfaces with clean architecture, from marketing sites to full dashboards.",
       },
       {
         title: "APIs & Backend",
         icon: "server",
         modelKey: "showcase-api-backend",
         image: {
-          src: "/images/api-backend.jpg",
+          src: "/images/card/api-backend.jpg",
           alt: "APIs & Backend",
         },
+        description:
+          "Typed Node.js and Hono APIs with validation, authentication and clear error handling that scale with your product.",
       },
       {
         title: "Databases",
         icon: "database",
         modelKey: "showcase-database",
         image: {
-          src: "/images/databases.jpg",
+          src: "/images/card/databases.jpg",
           alt: "Databases",
         },
+        description:
+          "Schema design, queries and migrations on PostgreSQL, MySQL and Supabase, built for integrity and speed.",
       },
       {
         title: "AR Experiences",
         icon: "sparkles",
         modelKey: "showcase-ar-experience",
         image: {
-          src: "/images/ar-experiences.jpg",
+          src: "/images/card/augmented-reality.jpg",
           alt: "AR Experiences",
         },
+        description:
+          "Immersive 3D on the web: interactive models, scroll-driven scenes and playful product demos.",
       },
     ],
   },
